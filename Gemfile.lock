@@ -8,8 +8,11 @@ GEM
     chromedriver-helper (1.1.0)
       archive-zip (~> 0.7.0)
       nokogiri (~> 1.6)
+    colorize (0.8.1)
+    docile (1.1.5)
     ffi (1.9.18)
     io-like (0.3.0)
+    json (2.1.0)
     mini_portile2 (2.2.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -17,6 +20,11 @@ GEM
     selenium-webdriver (3.5.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    simplecov (0.15.1)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     webdriver-firefox (0.0.15)
       selenium-webdriver
 
@@ -25,7 +33,9 @@ PLATFORMS
 
 DEPENDENCIES
   chromedriver-helper
+  colorize
   selenium-webdriver
+  simplecov
   webdriver-firefox
 
 BUNDLED WITH
