@@ -11,10 +11,12 @@ the url from the second csv. The results will be displayed in the output screen.
 The failures will be recorded into a new csv.
 =end
 class Redirects
-  driver = Selenium::WebDriver::Driver.for :firefox
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  driver = Selenium::WebDriver::Driver.for :chrome, options: options
   url_hash = {}
   csv_array = []
-  row_counter = 2
+  row_counter = 2 # Change this value to 1 if your csv does not have a header.
 
 =begin
 This section reads the redirects csv and places each row of information into the array.
