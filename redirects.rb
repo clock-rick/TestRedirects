@@ -2,6 +2,7 @@ require 'selenium-webdriver'
 require 'csv'
 require 'chromedriver/helper'
 require 'colorize'
+require 'net/http'
 
 =begin
  This test will open two csv files, the first with original urls
@@ -17,7 +18,7 @@ class Redirects
   url_hash = {}
   csv_array = []
   row_counter = 2 # Change this value to 1 if your csv does not have a header.
-
+  driver
 =begin
 This section reads the redirects csv and places each row of information into the array.
 Since both the 'to url' and the 'from url' are contained within the same row, they both are contained
@@ -45,9 +46,9 @@ name the new csv to something relevant to the project. After the run is complete
 =end
 
   url_hash.each { |from_url, to_url|
-    driver.navigate.to from_url
-    driver.manage.timeouts.page_load = 1000
-    redirected_to = driver.current_url.to_s.downcase
+    response = Net::HTTP.get_response(URI(from_url))
+    location = response['location']
+    redirected_to= location.to_s.downcase
     from_actual = from_url.to_s.downcase.strip
     to_actual = to_url.to_s.downcase.strip
     if redirected_to == to_actual
